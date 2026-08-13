@@ -1,0 +1,965 @@
+================================================================================
+COMP6030 - CrossQuant
+Weekly Meeting Minutes
+================================================================================
+Members: Arnav Jain (aj563), Clarissa Jaiswal (cjj25), Jake Smith (js2378),
+         Luke Hinds (lh693), Jeremy Obi (jo445)
+Supervisor: Christos Efstratiou
+================================================================================
+
+
+--------------------------------------------------------------------------------
+Meeting 1 | Date: 16/01/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Collected HM Land Registry and EPC Datasets
+  - Wrote scripts to download and filter data collections
+  - Designed the expected output layout
+  - Identified technology and usage within the project stack
+
+Arnav Jain (aj563):
+  - Downloaded the options dataset from Nasdaq Datalink
+  - Filtered rows where the future_name contains "Nasdaq" using the metadata file
+  - Established target clearing codes (NQ/ONQ/NQC/NQP variants) to isolate Nasdaq options
+
+Jake Smith (js2378):
+  - Researched frontend technologies and how they could be used with existing project structure
+  - Reviewed project requirements
+  - Planned initial webpage
+
+Luke Hinds (lh693):
+  - N/A
+
+Jeremy Obi (jo445):
+  - Cloned the project repository
+  - Researched potential datasets to extend the project functionality
+  - Explored datasets from Kaggle suitable for integration
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Begin data cleaning and feature engineering preparation
+
+Arnav Jain (aj563):
+  - Continued working on the dataset (renaming columns, feature engineering, etc.)
+
+Jake Smith (js2378):
+  - Set up project repository locally and review codebase
+  - Continued research into frontend frameworks
+  - Investigated suitable UI libraries for responsive design
+
+Luke Hinds (lh693):
+  - N/A
+
+Jeremy Obi (jo445):
+  - Review project structure and analyse existing implementation
+  - Understand current methodologies and system architecture
+
+
+--------------------------------------------------------------------------------
+Meeting 2 | Date: 23/01/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Cleaned datasets
+  - Performed initial feature engineering
+
+Arnav Jain (aj563):
+  - Built a clean, metadata-driven dataset ready for training
+  - Applied final filters and matched fields to Black-76 algorithm variables
+
+Jake Smith (js2378):
+  - Researching approaches for displaying charts and maps within the UI
+  - Created a basic frontpage
+  - Converted initial options pricing model to UBJ format
+
+Luke Hinds (lh693):
+  - Started research into sentiment analysis models
+
+Jeremy Obi (jo445):
+  - Analysed the existing option pricing implementation
+  - Studied the ML approach within the project
+  - Gained understanding of system architecture
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Aggregating datasets and preparing data for model training
+
+Arnav Jain (aj563):
+  - Final round of exploratory data analysis (distributions and visual diagnostics)
+
+Jake Smith (js2378):
+  - Adding another page onto the website and designing a navbar
+  - Planning overall frontend structure
+
+Luke Hinds (lh693):
+  - Research into sentiment models
+
+Jeremy Obi (jo445):
+  - Research suitable ML model for credit risk prediction
+
+
+--------------------------------------------------------------------------------
+Meeting 3 | Date: 30/01/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Aggregated data and joined tables
+  - Trained the initial machine learning model
+
+Arnav Jain (aj563):
+  - Additional feature engineering (risk-free rate, sigma, moneyness, moneyness category)
+
+Jake Smith (js2378):
+  - Tested early webpage layouts
+  - Reviewed existing options pricing model to understand frontend requirements
+
+Luke Hinds (lh693):
+  - Tested with multiple sentiment models
+
+Jeremy Obi (jo445):
+  - Researched and compared multiple classification algorithms for credit risk prediction
+  - Evaluated Random Forest and analysed strengths and limitations
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Improve model performance and investigate additional features
+
+Arnav Jain (aj563):
+  - Learning XGBoost through online tutorials
+  - Baseline training using Random Forest and investigating XGBoost
+
+Jake Smith (js2378):
+  - Continued frontend planning and preparing reusable components
+  - Exploring responsive UI approaches
+  - Looking into how to incorporate React into the project
+
+Luke Hinds (lh693):
+  - Looking into best article sources
+
+Jeremy Obi (jo445):
+  - Select appropriate classifier and begin working on other models
+
+
+--------------------------------------------------------------------------------
+Meeting 4 | Date: 06/02/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Improved performance using postcode latitude and longitude
+  - Researched target encoding techniques and evaluated suitability
+  - Created an experimentation environment for testing multiple models
+  - Reviewed literature on postcode district level real estate price prediction
+
+Arnav Jain (aj563):
+  - Trained a simple XGBoost model and benchmarked against Black-76 algorithm
+  - Researched potential improvements for the model
+
+Jake Smith (js2378):
+  - Added separate Django apps for each feature
+  - Researched Vite as the build tool for the React frontend
+
+Luke Hinds (lh693):
+  - Built article fetching system
+
+Jeremy Obi (jo445):
+  - Built and tested Random Forest classifier for credit risk prediction
+  - Implemented data preprocessing pipeline for credit risk features
+  - Evaluated model using accuracy, precision, and recall metrics
+  - Compared Random Forest against other classification algorithms
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Experiment with alternative geographic aggregations and improve RMSE
+
+Arnav Jain (aj563):
+  - Configuring CUDA for GPU training
+
+Jake Smith (js2378):
+  - Setting up React and Vite into the Django project
+  - Building basic pages for each feature
+
+Luke Hinds (lh693):
+  - Testing sentiment analysis on articles
+
+Jeremy Obi (jo445):
+  - Optimise Random Forest hyperparameters
+  - Begin implementing XGBoost for comparison
+
+
+--------------------------------------------------------------------------------
+Meeting 5 | Date: 13/02/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Trained model using postcode district data
+  - Clustered data for analysis due to unsatisfactory RMSE results
+  - Investigated MSOA aggregation to reduce noise
+  - Started designing project posters in Figma
+
+Arnav Jain (aj563):
+  - Ran XGBoost on GPU with larger capacity and early stopping
+
+Jake Smith (js2378):
+  - Added React and basic pages for each component
+  - Connected navbar to each page appropriately
+
+Luke Hinds (lh693):
+  - Sentiment analysis now runs on fetched article content
+
+Jeremy Obi (jo445):
+  - Completed credit risk model implementation
+  - Began writing first draft of project abstract
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Implement MSOA-level modelling
+
+Arnav Jain (aj563):
+  - Looking into hyperparameter optimisation using Optuna
+
+Jake Smith (js2378):
+  - Building housing and sentiment page layouts
+  - Researching UI components to display data in a readable format
+
+Luke Hinds (lh693):
+  - Testing with other sentiment models
+
+Jeremy Obi (jo445):
+  - Finalise abstract draft
+  - Begin looking into portfolio tracking
+  - Design database schema for user portfolios
+
+
+--------------------------------------------------------------------------------
+Meeting 6 | Date: 20/02/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Created draft of abstract and output simulation in Figma
+  - Performed feature engineering for MSOA training/testing datasets
+  - Merged ONSPD postcode data with MSOA codes
+
+Arnav Jain (aj563):
+  - Created an Optuna study with direction set to 'minimize'
+  - Ran 50 trials and obtained best MAE parameters
+
+Jake Smith (js2378):
+  - Added mock data to sentiment and housing pages for frontend development
+  - Edited housing layout to accommodate map
+
+Luke Hinds (lh693):
+  - Testing with other sentiment models
+
+Jeremy Obi (jo445):
+  - Continued portfolio page implementation
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Finalise poster and retrain models using improved datasets
+
+Arnav Jain (aj563):
+  - Exploring different stacks for the website
+  - Figuring out how to deploy the trained model
+
+Jake Smith (js2378):
+  - Adding basic GeoJSON boundaries to housing price page
+  - Looking into Leaflet for interactive map
+  - Applying CSS and layout improvements
+
+Luke Hinds (lh693):
+  - Continued testing with other sentiment models
+
+Jeremy Obi (jo445):
+  - Add portfolio value calculations
+  - Add currency conversion for international stocks
+
+
+--------------------------------------------------------------------------------
+Meeting 7 | Date: 27/02/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Trained models using XGBoost and Random Forest with structural features
+  - Discussed modelling strategy with supervisor regarding historical prices
+
+Arnav Jain (aj563):
+  - Built a basic Django project with a simple frontend
+  - Looking into running UBJSON model file in a Django project
+
+Jake Smith (js2378):
+  - Added basic coordinates to match postcodes
+  - CSS and layout changes
+  - Added pie charts to sentiment page
+
+Luke Hinds (lh693):
+  - Decided on use of FinBERT for stock sentiment
+
+Jeremy Obi (jo445):
+  - Portfolio page functional with basic CRUD operations
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Develop time series forecasting approach
+
+Arnav Jain (aj563):
+  - Helping fix React integration into the Django project
+  - Creating a simple API for the option pricing page
+
+Jake Smith (js2378):
+  - Improving sentiment and housing UI and removing bugs
+  - Removing default browser styling from options pricing input form
+
+Luke Hinds (lh693):
+  - Testing alternate ways of fetching articles
+
+Jeremy Obi (jo445):
+  - Add portfolio summary metrics (total value, gain/loss)
+  - Create geographic and sector breakdown charts
+
+
+--------------------------------------------------------------------------------
+Meeting 8 | Date: 06/03/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Engineered features for time series forecasting
+  - Aggregated sales data by quarter
+  - Added time index and lag features to capture seasonality
+  - Created continuous numeric time index
+
+Arnav Jain (aj563):
+  - Options pricing page now uses trained model and predicts option prices
+
+Jake Smith (js2378):
+  - Removed spin buttons from options form
+  - Minor CSS fixes
+
+Luke Hinds (lh693):
+  - N/A
+
+Jeremy Obi (jo445):
+  - Implementing portfolio tracking feature
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Train and validate forecasting models
+
+Arnav Jain (aj563):
+  - Working with CJ and Jake to clean project structure and implement React
+  - Working with Jeremy to add portfolio tracking
+  - Display graphs on option pricing page
+
+Jake Smith (js2378):
+  - Working on poster for the fair
+
+Luke Hinds (lh693):
+  - N/A
+
+Jeremy Obi (jo445):
+  - Working with Arnav to add portfolio tracking feature
+
+
+--------------------------------------------------------------------------------
+Meeting 9 | Date: 13/03/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Trained and tested time series models
+  - Applied time series cross-validation using k-fold approach
+
+Arnav Jain (aj563):
+  - Added payoff graph and information dialog boxes to options pricing page
+
+Jake Smith (js2378):
+  - Worked on poster with different layouts and designs
+  - Reviewed portfolio page for UI bugs
+
+Luke Hinds (lh693):
+  - N/A
+
+Jeremy Obi (jo445):
+  - Collaborated with Arnav to fix portfolio bugs
+  - Ensured portfolio displays correctly on screen
+  - Tested portfolio with real user data
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Review validation methodology and prevent temporal data leakage
+
+Arnav Jain (aj563):
+  - Fixing portfolio tracking bugs
+  - Added price history graphs, portfolio news, improved UI
+
+Jake Smith (js2378):
+  - Making improvements to the about page
+
+Luke Hinds (lh693):
+  - Bug fixes for sentiment analysis
+
+Jeremy Obi (jo445):
+  - Add property tracking feature to portfolio
+  - Implement user isolation for portfolio data
+
+
+--------------------------------------------------------------------------------
+Meeting 10 | Date: 20/03/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Identified issue with k-fold mixing historical and future data
+  - Retrained model using expanding window time series cross-validation
+  - Implemented sequential validation predicting one quarter ahead
+
+Arnav Jain (aj563):
+  - N/A
+
+Jake Smith (js2378):
+  - Reviewed frontend after backend integration
+  - Made minor bug fixes
+  - Tested sentiment page loading performance
+
+Luke Hinds (lh693):
+  - Completed and pushed stock sentiment file
+
+Jeremy Obi (jo445):
+  - Began integrating sentiment analysis backend
+  - Reviewed Luke's FinBERT model for integration
+  - Set up sentiment analysis API endpoints
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Prepare model outputs for system integration
+
+Arnav Jain (aj563):
+  - N/A
+
+Jake Smith (js2378):
+  - Improving profile page and account management UI
+
+Luke Hinds (lh693):
+  - Research into models and articles for property sentiment analysis
+
+Jeremy Obi (jo445):
+  - Complete sentiment API integration
+  - Test sentiment with real financial news
+
+
+--------------------------------------------------------------------------------
+Meeting 11 | Date: 27/03/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Generated prediction CSV file and rate of change per year
+  - Integrated model output into Django backend
+
+Arnav Jain (aj563):
+  - N/A
+
+Jake Smith (js2378):
+  - Improved About page with updated feature descriptions
+  - Added profile page with account settings and delete account
+
+Luke Hinds (lh693):
+  - Research into articles for property sentiment analysis
+
+Jeremy Obi (jo445):
+  - Integrated Luke's FinBERT sentiment analysis model into Django backend
+  - Connected frontend to real sentiment data (removed dummy data)
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Improve data storage and backend performance
+
+Arnav Jain (aj563):
+  - N/A
+
+Jake Smith (js2378):
+  - Fixing map overlap bug on the housing page
+  - Testing website across different screen sizes
+
+Luke Hinds (lh693):
+  - Building test model fetching for sentiment analysis
+
+Jeremy Obi (jo445):
+  - Optimise sentiment model performance
+  - Looked into caching for sentiment results
+
+
+--------------------------------------------------------------------------------
+Meeting 12 | Date: 03/04/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Implemented supervisor feedback to store data in SQLite
+  - Wrote scripts to load CSV data into the database
+  - Integrated SQLite database with backend
+
+Arnav Jain (aj563):
+  - N/A
+
+Jake Smith (js2378):
+  - Fixed map overlap bug
+  - Created and added logo to navbar and favicon
+  - Improved delete account confirmation feedback
+
+Luke Hinds (lh693):
+  - Testing models on articles
+
+Jeremy Obi (jo445):
+  - Fixed memory crashes by enabling GPU (MPS) acceleration for FinBERT
+  - Added email validation to block fake email domains
+  - Added optional phone number field to user registration
+  - Ran migrations to update database schema
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Connect backend data to frontend application
+
+Arnav Jain (aj563):
+  - N/A
+
+Jake Smith (js2378):
+  - Testing map across multiple postcodes
+  - Adding zoom and area selection features to housing map
+
+Luke Hinds (lh693):
+  - Testing ways to speed up article fetching
+
+Jeremy Obi (jo445):
+  - Continue sentiment analysis improvements
+
+
+--------------------------------------------------------------------------------
+Meeting 13 | Date: 10/04/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Integrated backend APIs with frontend
+  - Replaced mock frontend data with live REST API data
+  - Updated frontend functionality
+  - Created README documentation for full system setup
+
+Arnav Jain (aj563):
+  - N/A
+
+Jake Smith (js2378):
+  - Added zoom and click-to-select features to the map
+  - Tested features across multiple postcodes
+
+Luke Hinds (lh693):
+  - N/A
+
+Jeremy Obi (jo445):
+  - Prepared sentiment branch for merging
+  - Connected sentiment analysis frontend to live API
+  - Removed hardcoded dummy documents from sentiment page
+  - Tested sentiment analysis with multiple stocks (TSLA, AAPL, NVDA)
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Implement geographic visualisation features
+
+Arnav Jain (aj563):
+  - N/A
+
+Jake Smith (js2378):
+  - Use real source article links on sentiment page
+  - Updating layout of sentiment page with stock/housing split
+
+Luke Hinds (lh693):
+  - N/A
+
+Jeremy Obi (jo445):
+  - Merge sentiment branch into main
+  - Resolve merge conflicts
+
+
+--------------------------------------------------------------------------------
+Meeting 14 | Date: 17/04/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Added red boundary mapping visualisation
+  - Generated updated Kent GeoJSON file
+
+Arnav Jain (aj563):
+  - Unit testing for the option pricing model
+  - Added content to report for option pricing
+
+Jake Smith (js2378):
+  - Added source articles to sentiment page showing headlines
+  - Re-positioned map markers to match updated red boundary polygons
+
+Luke Hinds (lh693):
+  - Implementing faster article fetching
+
+Jeremy Obi (jo445):
+  - Merged sentiment analysis into main branch
+  - Resolved merge conflicts between luke-finbert and main
+  - Conducted user testing with 3 participants
+  - Collected feedback on portfolio and sentiment pages
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Add information button
+  - Update the about page
+
+Arnav Jain (aj563):
+  - Attach performance metrics and graphs to report
+  - Look into unit testing for other parts of the project
+
+Jake Smith (js2378):
+  - Adding a custom scrollbar to match website aesthetic
+  - Splitting sentiment to stock/housing panels
+
+Luke Hinds (lh693):
+  - Testing alternate property sentiment queries
+
+Jeremy Obi (jo445):
+  - Implement user feedback improvements
+  - Fix issues found during testing
+
+
+--------------------------------------------------------------------------------
+Meeting 15 | Date: 21/04/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Added information button and updated the about page
+
+Arnav Jain (aj563):
+  - Unit testing for options app views in Django
+  - Fixed information pop-ups on the options page
+
+Jake Smith (js2378):
+  - Tested sentiment page with search results
+  - Integrated stock model to housing side of sentiment
+  - Added custom scrollbar across the site
+
+Luke Hinds (lh693):
+  - Tested property sentiment code with Kent postcodes
+  - Tested summaries for stock sentiment
+
+Jeremy Obi (jo445):
+  - Fixed frontend display issues on sentiment page
+  - Improved UI based on user feedback
+  - Prepared final documentation for portfolio and sentiment features
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Unit testing for house pricing backend model, views and utils
+  - First draft of the report
+
+Arnav Jain (aj563):
+  - Planning content for model evaluations section of the report
+  - Plan UI for a dashboard home page
+  - Continue bug fixing and UI improvements
+
+Jake Smith (js2378):
+  - Adding a tutorial button and walkthrough to housing and options pages
+  - Fixing minor UI bugs identified in team testing
+
+Luke Hinds (lh693):
+  - Further testing for property sentiment analysis
+
+Jeremy Obi (jo445):
+  - Add property tracking to portfolio module
+  - Write unit tests for portfolio features
+
+
+--------------------------------------------------------------------------------
+Meeting 16 | Date: 28/04/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Completed unit testing for housing backend
+
+Arnav Jain (aj563):
+  - Added option to compare multiple postcode house prices at once
+  - Made changes to GeoJSON to incorporate multiple postcodes
+  - Users can now see 3 most recent house/postcode searches on home page
+  - Improved housing pricing API efficiency for multiple postcodes
+
+Jake Smith (js2378):
+  - Added tutorial to housing and options pages
+  - Fixed encountered UI bugs and display inconsistencies
+
+Luke Hinds (lh693):
+  - Pushed property sentiment analysis file
+
+Jeremy Obi (jo445):
+  - Fixed frontend display issues on sentiment page
+  - Improved UI based on user feedback
+  - Prepared final documentation for portfolio and sentiment features
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Fix bugs in compare postcode frontend and red boundary mapping issue
+
+Arnav Jain (aj563):
+  - Planning content for model evaluations section of the report
+  - Plan UI for dashboard home page
+  - Continue bug fixing and UI improvements
+
+Jake Smith (js2378):
+  - Linking housing ML model to frontend and replacing temporary model
+  - Updating sentiment page to use VADER model for stocks
+
+Luke Hinds (lh693):
+  - Fixing property sentiment (still using stock sentiment code)
+  - Modifying stock sentiment to run on summaries instead of full articles
+
+Jeremy Obi (jo445):
+  - Complete property tracking implementation
+  - Begin comprehensive unit testing
+
+
+--------------------------------------------------------------------------------
+Meeting 17 | Date: 05/05/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Fixed bugs in housing code
+  - Worked on report second draft
+
+Arnav Jain (aj563):
+  - Added explanations to options pricing section of the report
+
+Jake Smith (js2378):
+  - Linked housing sentiment model to the frontend
+  - Verified comparison feature on housing page displaying correctly
+  - Updated sentiment page to use correct stock model
+
+Luke Hinds (lh693):
+  - Fixes to property sentiment code
+
+Jeremy Obi (jo445):
+  - Continued portfolio improvements
+  - Added multi-currency support with live exchange rates
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Fix news portfolio page render issue
+  - Button issues in tutorial box
+  - Work on report
+
+Arnav Jain (aj563):
+  - Working on writing an introduction
+  - Advising Jeremy on portfolio tracking content for report
+
+Jake Smith (js2378):
+  - Addressing any remaining UI fixes
+  - Work on report
+
+Luke Hinds (lh693):
+  - Testing stock sentiment with VADER model
+
+Jeremy Obi (jo445):
+  - Add country flags and codes to portfolio
+  - Complete unit tests
+
+
+--------------------------------------------------------------------------------
+Meeting 18 | Date: 12/05/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Fixed the news portfolio page render issue
+  - Added "X" close button in tutorial box
+  - Worked on report second draft
+
+Arnav Jain (aj563):
+  - Introduction for the report has been added
+
+Jake Smith (js2378):
+  - Applied UI fixes with correct buttons to match aesthetic
+
+Luke Hinds (lh693):
+  - Changed stock sentiment to use VADER instead of FinBERT
+  - Changed sentiment files to analyse summaries instead of full articles
+
+Jeremy Obi (jo445):
+  - Fixed exchange rate issue for portfolio (correctly converts to USD)
+  - Added live exchange rates with card display
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Testing and visualisation of housing ML model
+  - Work on property portfolio
+  - Work on report second draft
+
+Arnav Jain (aj563):
+  - Writing the website section of the report
+
+Jake Smith (js2378):
+  - Writing the team collaboration section
+  - Checking for mistakes in current report
+
+Luke Hinds (lh693):
+  - Work on technical report
+
+Jeremy Obi (jo445):
+  - Add unit tests for portfolio module
+
+
+--------------------------------------------------------------------------------
+Meeting 19 | Date: 19/05/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Completed testing and visualisation of ipynb file
+  - Removed hardcoded file paths
+  - Portfolio now tracks property bought by user, total annual rent,
+    number of properties and area breakdown pie chart
+
+Arnav Jain (aj563):
+  - Basic website section added to report
+  - Working with CJ and Jake to refine and shorten it
+
+Jake Smith (js2378):
+  - Added the collaboration section
+  - Restructured parts of the document
+  - Working on user testing section
+
+Luke Hinds (lh693):
+  - Worked on technical report
+
+Jeremy Obi (jo445):
+  - Added comprehensive unit tests for property model and API endpoints
+  - Tests cover stocks, properties, user isolation, history, search, news,
+    currency (52 tests total)
+  - Re-wrote technical report sections for portfolio and sentiment features
+  - Added country flags and codes to portfolio stock symbols
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Integrate the new sentiment file that Luke pushed
+
+Arnav Jain (aj563):
+  - Advising Jeremy on portfolio tracking report section
+  - Working on report
+
+Jake Smith (js2378):
+  - Complete user testing section
+  - Adding abstract and refining introduction section
+
+Luke Hinds (lh693):
+  - Working on technical report
+  - Found that article fetching in both sentiment files can be sped up
+
+Jeremy Obi (jo445):
+  - Look into changing technical report to paragraphs
+  - Finalise all unit tests
+
+
+--------------------------------------------------------------------------------
+Meeting 20 | Date: 26/05/2026
+--------------------------------------------------------------------------------
+
+WHAT'S BEEN DONE SINCE THE PREVIOUS MEETING
+
+Clarissa Jaiswal (cjj25):
+  - Integrated the new property sentiment file that Luke pushed to the backend
+  - Housing side of technical report completed
+
+Arnav Jain (aj563):
+  - Refined the website section
+  - Created a summary of the architecture of options and portfolio
+    (sent to CJ to create architecture diagrams)
+
+Jake Smith (js2378):
+  - Proof reading the document
+  - Added abstract and refined introduction
+  - Completed user testing section
+  - Corrected SPAG and improved document readability
+
+Luke Hinds (lh693):
+  - Added sentiment analysis section to document
+  - Fixed both sentiment analysis files (reduced runtime from 20 seconds)
+
+Jeremy Obi (jo445):
+  - Completed all portfolio unit tests (52/52 passing)
+  - Finalised technical report sections
+
+WHAT'S BEING DONE
+
+Clarissa Jaiswal (cjj25):
+  - Work on report (System architecture diagram)
+
+Arnav Jain (aj563):
+  - Rephrased / provided alternative to portfolio tracking section in report
+  - Worked on the individual report
+
+Jake Smith (js2378):
+  - Finalising work on the report and submission
+  - Planning the video
+
+Luke Hinds (lh693):
+  - Working on individual and technical report
+
+Jeremy Obi (jo445):
+  - Work on individual and technical report final submission
+  - Final project review before submission
+
+
+================================================================================
+End of Meeting Minutes
+================================================================================

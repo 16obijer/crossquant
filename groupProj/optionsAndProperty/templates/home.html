@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Options & Property{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-5xl font-extrabold text-slate-800 mb-4">Welcome to Options & Property</h1>
+        <p class="text-xl text-slate-600">Your comprehensive financial analysis platform</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mt-12">
+        <a href="{% url 'options_pricing' %}" class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition border border-slate-200">
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">Options Pricing</h3>
+            <p class="text-slate-600">Calculate fair prices for Nasdaq 100 futures options using advanced models.</p>
+        </a>
+        
+        <a href="{% url 'house_pricing' %}" class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition border border-slate-200">
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">House Pricing</h3>
+            <p class="text-slate-600">Estimate property values with our machine learning models.</p>
+        </a>
+
+        <a href="{% url 'sentiment_analysis' %}" class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition border border-slate-200">
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">Sentiment Analysis</h3>
+            <p class="text-slate-600">Analyze sentiment from text data using advanced NLP techniques.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

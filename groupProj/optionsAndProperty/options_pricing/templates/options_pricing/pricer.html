@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Options Pricer - Options & Property{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-[calc(100vh-4rem)] py-8">
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg border border-slate-200">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold text-slate-800">Options Pricer</h1>
+            <p class="text-sm text-slate-500 mt-2">Nasdaq 100 Futures Option Pricer</p>
+        </div>
+
+        <form method="POST" class="space-y-5">
+            {% csrf_token %}
+            
+            <div class="grid grid-cols-2 gap-5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Futures Price ($)</label>
+                    <input type="number" step="0.01" name="S" value="{{ inputs.S|default:'18000' }}" class="w-full bg-slate-50 text-slate-800 border border-slate-300 rounded p-3 focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Strike Price ($)</label>
+                    <input type="number" step="0.01" name="K" value="{{ inputs.K|default:'18500' }}" class="w-full bg-slate-50 text-slate-800 border border-slate-300 rounded p-3 focus:outline-none focus:border-blue-500" required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Days</label>
+                    <input type="number" step="1" name="T" value="{{ inputs.T|default:'30' }}" class="w-full bg-slate-50 text-slate-800 border border-slate-300 rounded p-3 focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Vol (%)</label>
+                    <input type="number" step="0.1" name="sigma" value="{{ inputs.sigma|default:'15' }}" class="w-full bg-slate-50 text-slate-800 border border-slate-300 rounded p-3 focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Rate (%)</label>
+                    <input type="number" step="0.1" name="r" value="{{ inputs.r|default:'4.5' }}" class="w-full bg-slate-50 text-slate-800 border border-slate-300 rounded p-3 focus:outline-none focus:border-blue-500" required>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Type</label>
+                <div class="flex gap-4">
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="option_type" value="1" class="form-radio text-blue-600" {% if inputs.option_type != '0' %}checked{% endif %}>
+                        <span class="text-slate-700">Call Option</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="radio" name="option_type" value="0" class="form-radio text-blue-600" {% if inputs.option_type == '0' %}checked{% endif %}>
+                        <span class="text-slate-700">Put Option</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded shadow hover:bg-blue-700 transition duration-200">
+                Calculate Fair Price
+            </button>
+        </form>
+
+        {% if prediction %}
+        <div class="mt-8 p-6 bg-green-50 border border-green-200 rounded-lg text-center animate-pulse">
+            <p class="text-xs text-green-600 font-bold uppercase tracking-wide">Model Estimate</p>
+            <p class="text-4xl font-extrabold text-green-800 mt-2">{{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

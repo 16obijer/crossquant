@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}About - Options & Property{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white p-8 rounded-xl shadow-2xl border border-slate-200">
+        <h1 class="text-3xl font-extrabold text-slate-800 mb-6">About Options & Property</h1>
+        
+        <div class="prose max-w-none text-slate-600">
+            <p class="mb-4">
+                Options & Property is a comprehensive financial analysis platform that combines advanced pricing models 
+                with machine learning to help you make informed investment decisions.
+            </p>
+            
+            <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">Our Tools</h2>
+            <ul class="list-disc list-inside space-y-2 mb-6">
+                <li><strong>Options Pricing:</strong> Calculate fair values for Nasdaq 100 futures options</li>
+                <li><strong>House Pricing:</strong> Estimate property values using ML models</li>
+                <li><strong>Sentiment Analysis:</strong> Advanced sentiment analysis tools</li>
+            </ul>
+            
+            <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">Contact</h2>
+            <p>For inquiries, please reach out to us at <a href="mailto:info@optionsandproperty.com" class="text-blue-600 hover:underline">info@optionsandproperty.com</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

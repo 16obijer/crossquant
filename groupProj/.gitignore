@@ -1,0 +1,70 @@
+# --- Massive Data (CRITICAL) ---
+
+*.csv.gz
+*.zip
+*.tar.gz
+
+# --- Trained Models (Don't push these) ---
+*.joblib
+*.pkl
+nasdaq_option_pricer.json  # Your XGBoost model file
+
+# --- Secrets & Config ---
+.env
+api_keys.py                # If you ever move keys to a separate file
+
+# --- Python & Jupyter System Files ---
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# --- OS & Editor Junk ---
+.DS_Store                  # Mac
+Thumbs.db                  # Windows
+.vscode/                   # VS Code local settings
+.idea/                     # PyCharm settings
+
+# --- Project-specific artifacts ---
+# Models and scalers (binary artifacts)
+models/
+models/*.pkl
+models/*.joblib
+models/*.keras
+models/*.h5
+models/*.ckpt
+
+# Training logs and results
+logs/
+results/
+
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+
+# Lock files sometimes generated in environments
+poetry.lock
+
+# Python/Django
+__pycache__/
+*.py[cod]
+db.sqlite3
+
+# React/Node
+frontend/node_modules/
+frontend/dist/
+.env
+.DS_Store
+optionsAndProperty/db.sqlite3
+optionsAndProperty/db.sqlite3
+
+
+# personal files
+OPTION_PRICING_MODEL_WORKFLOW.md
+nasdaq_option_pricer.json
+nasdaq_option_pricer.ubj

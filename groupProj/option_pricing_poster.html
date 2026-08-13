@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning for Options Pricing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+        }
+        
+        .poster {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.4em;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .header .authors {
+            font-size: 1.1em;
+            color: #718096;
+            margin-top: 15px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        
+        .box {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .box h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .box ul li {
+            padding: 8px 0;
+            color: #4a5568;
+            font-size: 1.05em;
+        }
+        
+        .box ul li:before {
+            content: "▸ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .metric-card .value {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .metric-card .label {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #68d391;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+        
+        .features-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        
+        .features-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+        
+        .features-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+        
+        .features-table tr:hover {
+            background: #f7fafc;
+        }
+        
+        .highlight {
+            background: #fef5e7;
+            padding: 20px;
+            border-left: 4px solid #f39c12;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .highlight strong {
+            color: #d68910;
+            font-size: 1.2em;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .tech-badge {
+            background: #edf2f7;
+            color: #2d3748;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            border: 2px solid #cbd5e0;
+        }
+        
+        .architecture {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .flow-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            min-width: 150px;
+            text-align: center;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+            margin: 0 10px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .poster {
+                box-shadow: none;
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="header">
+            <h1>🎯 Machine Learning for NASDAQ-100 Options Pricing</h1>
+            <div class="subtitle">XGBoost Regressor Outperforms Traditional Black-76 Model by 93%</div>
+            <div class="authors">Group Project | February 2026</div>
+        </div>
+
+        <!-- Abstract -->
+        <div class="section">
+            <h2 class="section-title">📋 Abstract</h2>
+            <p style="font-size: 1.15em; line-height: 1.8; color: #4a5568;">
+                This project implements a <strong>machine learning approach</strong> to price <strong>NASDAQ-100 futures options</strong> 
+                using real CME market data. Through iterative optimization including <strong>feature engineering</strong>, 
+                <strong>log-transformation</strong>, and <strong>Optuna hyperparameter tuning</strong>, our final <strong>XGBoost model</strong> 
+                achieves a <strong>Mean Absolute Error (MAE) of $8.44</strong>, drastically outperforming the traditional Black-76 
+                formula (MAE: $118.36) by <strong>93%</strong>. The trained model is deployed via a <strong>Django REST API</strong> 
+                and integrated with a <strong>React frontend</strong>, providing real-time option pricing predictions.
+            </p>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="section">
+            <h2 class="section-title">📊 Performance Metrics</h2>
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="value">$8.44</div>
+                    <div class="label">Final XGBoost MAE</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">$118.36</div>
+                    <div class="label">Black-76 MAE</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">93%</div>
+                    <div class="label">Improvement</div>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <strong>Key Achievement:</strong> Our optimized XGBoost model reduces pricing error by <strong>$109.92 per contract</strong> 
+                (93% reduction) compared to the traditional Black-76 formula, demonstrating the power of machine learning and 
+                hyperparameter optimization in financial applications.
+            </div>
+        </div>
+
+        <!-- Model Architecture -->
+        <div class="section">
+            <h2 class="section-title">🏗️ Model Architecture</h2>
+            <div class="architecture">
+                <div class="flow">
+                    <div class="flow-item">Input Features<br/>(7 variables)</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">Feature<br/>Engineering</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">XGBoost<br/>Regressor</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">Log Transform<br/>Reversal</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">Option Price<br/>Prediction</div>
+                </div>
+            </div>
+            
+            <!-- Error Reduction Visualization -->
+            <div style="margin-top: 40px; background: white; padding: 30px; border-radius: 12px; border: 2px solid #e2e8f0;">
+                <h3 style="text-align: center; color: #2d3748; margin-bottom: 30px;">📉 Progressive Error Reduction</h3>
+                <div style="display: flex; justify-content: space-around; align-items: flex-end; height: 300px; padding: 0 20px;">
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 237px; background: linear-gradient(to top, #e53e3e, #fc8181); border-radius: 8px 8px 0 0; position: relative;">
+                            <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-weight: bold; color: #2d3748;">$118</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9em; color: #4a5568; font-weight: 600;">Black-76</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 135px; background: linear-gradient(to top, #3182ce, #63b3ed); border-radius: 8px 8px 0 0; position: relative;">
+                            <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-weight: bold; color: #2d3748;">$67</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9em; color: #4a5568; font-weight: 600;">Baseline</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 31px; background: linear-gradient(to top, #2b6cb0, #4299e1); border-radius: 8px 8px 0 0; position: relative;">
+                            <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-weight: bold; color: #2d3748;">$16</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9em; color: #4a5568; font-weight: 600;">Optimized</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 17px; background: linear-gradient(to top, #38a169, #48bb78); border-radius: 8px 8px 0 0; position: relative;">
+                            <div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-weight: bold; color: #2d3748;">$8</div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9em; color: #4a5568; font-weight: 600;">Final</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 30px; color: #718096; font-size: 0.9em;">
+                    Mean Absolute Error (Lower is Better)
+                </div>
+            </div>
+        </div>
+
+        <!-- Features & Data -->
+        <div class="section">
+            <h2 class="section-title">🔢 Input Features & Data Engineering</h2>
+            <table class="features-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Transformation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>S</strong></td>
+                        <td>Futures Price (Underlying Asset)</td>
+                        <td>Raw value</td>
+                    </tr>
+                    <tr>
+                        <td><strong>K</strong></td>
+                        <td>Strike Price</td>
+                        <td>Raw value</td>
+                    </tr>
+                    <tr>
+                        <td><strong>T</strong></td>
+                        <td>Time to Expiration</td>
+                        <td>Days → Years (÷365)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>r</strong></td>
+                        <td>Risk-Free Rate</td>
+                        <td>Percentage → Decimal (÷100)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>σ (sigma)</strong></td>
+                        <td>Implied Volatility</td>
+                        <td>Percentage → Decimal (÷100)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>is_call</strong></td>
+                        <td>Option Type (Call/Put)</td>
+                        <td>Binary (1=Call, 0=Put)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>moneyness</strong></td>
+                        <td>Engineered Feature</td>
+                        <td>S / K (ratio)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="box" style="margin-top: 20px;">
+                <h3>📦 Data Source</h3>
+                <p style="color: #4a5568; line-height: 1.8;">
+                    Professional CME (Chicago Mercantile Exchange) options data for NASDAQ-100 E-mini futures contracts. 
+                    Dataset includes real market prices with various strikes, expirations, and market conditions.
+                </p>
+            </div>
+        </div>
+
+        <!-- Technical Implementation -->
+        <div class="section">
+            <h2 class="section-title">⚙️ Technical Implementation</h2>
+            <div class="two-column">
+                <div class="box">
+                    <h3>Model Training</h3>
+                    <ul>
+                        <li>Algorithm: XGBoost Regressor</li>
+                        <li>Target: Log-transformed prices (log1p)</li>
+                        <li>Prediction: Exponential reversal (expm1)</li>
+                        <li>Format: UBJSON binary (.ubj)</li>
+                        <li>Loading: Pre-loaded at Django startup</li>
+                    </ul>
+                </div>
+                
+                <div class="box">
+                    <h3>Backend API</h3>
+                    <ul>
+                        <li>Framework: Django REST</li>
+                        <li>Endpoint: POST /api/predict-option-price/</li>
+                        <li>Format: JSON request/response</li>
+                        <li>Validation: Comprehensive input checks</li>
+                        <li>CORS: Configured for React frontend</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px; color: #2d3748; font-size: 1.3em;">📝 API Request Example</h3>
+            <div class="code-block">
+POST /api/predict-option-price/
+Content-Type: application/json
+
+{
+  "S": 18000,          // Futures price: $18,000
+  "K": 18500,          // Strike price: $18,500
+  "T": 30,             // Days to expiration: 30
+  "r": 4.5,            // Risk-free rate: 4.5%
+  "sigma": 15,         // Volatility: 15%
+  "option_type": 1     // Call option (1=Call, 0=Put)
+}
+
+Response:
+{
+  "success": true,
+  "price": 285.42,     // Predicted option price
+  "inputs": { ... }
+}
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="section">
+            <h2 class="section-title">🛠️ Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-badge">Python 3.x</div>
+                <div class="tech-badge">XGBoost</div>
+                <div class="tech-badge">NumPy</div>
+                <div class="tech-badge">Pandas</div>
+                <div class="tech-badge">Django 6.0</div>
+                <div class="tech-badge">Django REST Framework</div>
+                <div class="tech-badge">React 19.2</div>
+                <div class="tech-badge">Vite</div>
+                <div class="tech-badge">Scikit-learn</div>
+            </div>
+        </div>
+
+        <!-- Optimization Journey -->
+        <div class="section">
+            <h2 class="section-title">🔬 Optimization Journey</h2>
+            <div class="two-column">
+                <div class="box">
+                    <h3>Stage 1: Baseline Model</h3>
+                    <ul>
+                        <li>Basic features (S, K, T, r, σ, type)</li>
+                        <li>Raw price target</li>
+                        <li>Standard XGBoost parameters</li>
+                        <li>Result: $67.16 MAE</li>
+                    </ul>
+                </div>
+                
+                <div class="box">
+                    <h3>Stage 2: Architecture Optimization</h3>
+                    <ul>
+                        <li>Added moneyness feature (S/K)</li>
+                        <li>Log-transform target (log1p/expm1)</li>
+                        <li>Deeper trees (max_depth=10)</li>
+                        <li>GPU acceleration (CUDA)</li>
+                        <li>Result: $15.70 MAE</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="box" style="margin-top: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                <h3 style="color: white;">Stage 3: Optuna Hyperparameter Tuning</h3>
+                <ul style="color: white;">
+                    <li>50 trials exploring parameter space</li>
+                    <li>Learning rate: 0.0387 (optimized from 0.05)</li>
+                    <li>Max depth: 14 (increased from 10)</li>
+                    <li>Regularization: α=0.011, λ=7.20</li>
+                    <li>Early stopping with eval monitoring</li>
+                    <li><strong style="color: #ffd700;">Result: $8.44 MAE ⭐</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Key Advantages -->
+        <div class="section">
+            <h2 class="section-title">✨ Advantages Over Traditional Models</h2>
+            <div class="two-column">
+                <div class="box">
+                    <h3>⚡ Machine Learning Benefits</h3>
+                    <ul>
+                        <li>Captures non-linear relationships</li>
+                        <li>Learns from real market data</li>
+                        <li>Adapts to market inefficiencies</li>
+                        <li>No theoretical assumptions needed</li>
+                        <li>93% more accurate than Black-76</li>
+                    </ul>
+                </div>
+                
+                <div class="box">
+                    <h3>🚀 Deployment Features</h3>
+                    <ul>
+                        <li>Fast predictions (<< 1ms)</li>
+                        <li>Binary model format for speed</li>
+                        <li>RESTful API architecture</li>
+                        <li>Real-time web interface</li>
+                        <li>Token-based authentication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benchmark Comparison -->
+        <div class="section">
+            <h2 class="section-title">📈 Model Comparison: XGBoost vs Black-76</h2>
+            <div style="background: #f7fafc; padding: 30px; border-radius: 12px; margin-top: 20px;">
+                <table style="width: 100%; font-size: 1.1em;">
+                    <tr>
+                        <td style="padding: 15px; color: #2d3748;"><strong>Black-76 Formula:</strong></td>
+                        <td style="padding: 15px; color: #4a5568;">Traditional theoretical model for futures options pricing</td>
+                        <td style="padding: 15px; text-align: right; color: #e53e3e; font-weight: bold;">MAE: $118.36</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px; color: #2d3748;"><strong>Baseline XGBoost:</strong></td>
+                        <td style="padding: 15px; color: #4a5568;">Initial ML model with basic features</td>
+                        <td style="padding: 15px; text-align: right; color: #3182ce; font-weight: bold;">MAE: $67.16</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px; color: #2d3748;"><strong>Optimized Model:</strong></td>
+                        <td style="padding: 15px; color: #4a5568;">Log-transform + moneyness feature</td>
+                        <td style="padding: 15px; text-align: right; color: #2b6cb0; font-weight: bold;">MAE: $15.70</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px; color: #2d3748;"><strong>Final Champion:</strong></td>
+                        <td style="padding: 15px; color: #4a5568;">Optuna hyperparameter tuning</td>
+                        <td style="padding: 15px; text-align: right; color: #38a169; font-weight: bold;">MAE: $8.44</td>
+                    </tr>
+                    <tr style="background: #edf2f7;">
+                        <td style="padding: 15px; color: #2d3748;"><strong>Total Improvement:</strong></td>
+                        <td style="padding: 15px; color: #4a5568;">Absolute error reduction per contract</td>
+                        <td style="padding: 15px; text-align: right; color: #667eea; font-weight: bold; font-size: 1.3em;">$109.92 (93%)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Volatility Risk Premium & Accuracy Context -->
+        <div class="section">
+            <h2 class="section-title">💡 Understanding the 93% Improvement</h2>
+            
+            <div class="highlight" style="background: #e8f4fd; border-left-color: #3182ce; margin-bottom: 25px;">
+                <h3 style="color: #2c5282; margin-bottom: 15px;">⚠️ Important Context: Is 93% Realistic?</h3>
+                <p style="font-size: 1.05em; line-height: 1.8; color: #4a5568;">
+                    The 93% error reduction is <strong>real but somewhat artificial</strong> due to a data limitation. 
+                    Here's what actually happened:
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #bee3f8;">
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">📉 In This Experiment</h4>
+                        <ul style="color: #4a5568; line-height: 1.8; list-style: none; padding: 0;">
+                            <li>✓ XGBoost: $8.44 MAE</li>
+                            <li>✓ Black-76 (with HV): $118.36 MAE</li>
+                            <li>✓ Improvement: 93%</li>
+                            <li style="margin-top: 8px; font-size: 0.9em; color: #718096;">⚠️ Black-76 handicapped by using Historical Volatility</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #f6ad55;">
+                        <h4 style="color: #2d3748; margin-bottom: 10px;">🏭 Real-World Deployment</h4>
+                        <ul style="color: #4a5568; line-height: 1.8; list-style: none; padding: 0;">
+                            <li>✓ XGBoost: ~$8-10 MAE (estimated)</li>
+                            <li>✓ Black-76 (with IV): ~$15-25 MAE</li>
+                            <li>✓ Improvement: ~40-60%</li>
+                            <li style="margin-top: 8px; font-size: 0.9em; color: #718096;">With proper Implied Volatility inputs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight" style="background: #fff3cd; border-left-color: #ffc107;">
+                <h3 style="color: #744210; margin-bottom: 15px;">🔍 The Volatility Risk Premium Discovery</h3>
+                <p style="font-size: 1.1em; line-height: 1.8; color: #4a5568; margin-bottom: 15px;">
+                    The large gap between models reveals an important financial phenomenon: the <strong>Volatility Risk Premium</strong>.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 20px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #2d3748; margin-bottom: 8px; font-size: 0.95em;">1️⃣ The Problem</h4>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            Dataset lacked <strong>Implied Volatility (IV)</strong>. We used <strong>Historical Volatility (HV)</strong> 
+                            as a proxy, but in real markets <strong>IV ≫ HV</strong> (by 20-50%).
+                        </p>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #2d3748; margin-bottom: 8px; font-size: 0.95em;">2️⃣ Black-76's Handicap</h4>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            Using the lower HV instead of IV, Black-76 <strong>systematically underpriced</strong> 
+                            options by ~$110, inflating its error.
+                        </p>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px;">
+                        <h4 style="color: #2d3748; margin-bottom: 8px; font-size: 0.95em;">3️⃣ ML's Discovery</h4>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            XGBoost <strong>learned the risk premium</strong> from data, effectively discovering: 
+                            <code style="background: #edf2f7; padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">Price = Black76(HV) + Premium</code>
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 25px; padding: 20px; background: white; border-radius: 8px; border: 2px solid #ffc107;">
+                    <h4 style="color: #2d3748; margin-bottom: 10px;">💭 The Bottom Line</h4>
+                    <p style="color: #4a5568; line-height: 1.7;">
+                        If Black-76 had <strong>correct Implied Volatility</strong> inputs, we'd expect:
+                    </p>
+                    <ul style="color: #4a5568; line-height: 1.8; margin-top: 10px;">
+                        <li><strong>Black-76 with IV:</strong> ~$15-25 MAE</li>
+                        <li><strong>XGBoost:</strong> ~$8-10 MAE</li>
+                        <li><strong>Realistic improvement:</strong> 40-60% (still excellent!)</li>
+                    </ul>
+                    <p style="color: #4a5568; line-height: 1.7; margin-top: 15px; font-style: italic;">
+                        <strong>⚠️ For Real Deployment:</strong> The $8.44 was achieved in this experiment. 
+                        In production with proper IV inputs, expect ~$8-10 MAE for XGBoost vs ~$15-25 for Black-76, 
+                        giving a more realistic 40-60% improvement. Still excellent, but honest about the comparison.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Future Enhancements -->
+        <div class="section">
+            <h2 class="section-title">🔮 Future Enhancements</h2>
+            <div class="box">
+                <ul style="font-size: 1.05em;">
+                    <li>Expand to multiple underlying assets (SPX, Russell 2000)</li>
+                    <li>Real-time model updates with new market data</li>
+                    <li>Greeks calculation (Delta, Gamma, Vega, Theta)</li>
+                    <li>Portfolio optimization module</li>
+                    <li>Historical backtesting framework</li>
+                    <li>Deep learning models (LSTM, Transformer)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid #e2e8f0; text-align: center; color: #718096;">
+            <p style="font-size: 0.95em;">
+                <strong>GitHub Repository:</strong> GroupProject | 
+                <strong>Documentation:</strong> CHANGELOG.md, TEAM_GUIDE_API_CREATION.md
+            </p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                © 2026 | Built with Python, Django, React, and XGBoost
+            </p>
+        </div>
+    </div>
+</body>
+</html>
