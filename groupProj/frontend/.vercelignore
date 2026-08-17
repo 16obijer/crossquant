@@ -1,0 +1,29 @@
+# Ignore node_modules (Vercel will install dependencies itself)
+node_modules/
+
+# Ignore Python virtual environment
+venv/
+
+# Ignore database files
+*.db
+*.sqlite3
+
+# Ignore large files
+*.zip
+*.tar.gz
+*.mp4
+*.mov
+
+# Ignore build folders (Vercel will build)
+dist/
+build/
+
+# Ignore environment files
+.env*
+*.local
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
