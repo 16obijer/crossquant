@@ -1,29 +1,24 @@
-# Ignore node_modules (Vercel will install dependencies itself)
-node_modules/
-
-# Ignore Python virtual environment
-venv/
-
-# Ignore database files
-*.db
+# Python files - not needed for React app
+*.ipynb
+*.pyc
+__pycache__/
 *.sqlite3
+venv/
+*.py
 
-# Ignore large files
+# Jupyter notebooks
+*.ipynb_checkpoints/
+
+# Large files
 *.zip
-*.tar.gz
-*.mp4
-*.mov
+*.log
+.env
+.env.*
 
-# Ignore build folders (Vercel will build)
-dist/
-build/
+# Django backend (not needed for frontend)
+../optionsAndProperty/
+../venv/
 
-# Ignore environment files
-.env*
-*.local
-
-# Ignore IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
+# Extra files
+README.md
+*.md
