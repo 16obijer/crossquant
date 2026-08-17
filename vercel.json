@@ -1,17 +1,17 @@
 {
   "builds": [
     {
-      "src": "frontend/package.json",
+      "src": "groupProj/frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/dist"
+        "distDir": "groupProj/frontend/dist"
       }
     }
   ],
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/frontend/index.html"
+      "destination": "/groupProj/frontend/index.html"
     }
   ]
 }
