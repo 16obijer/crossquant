@@ -5,11 +5,6 @@ export default function About() {
       icon: "✦",
       description:
         "CME NASDAQ-100 futures options data was used to train an XGBoost regression model for price prediction, with Black-76 as a benchmark. Hyperparameters were optimised using Optuna, and performance evaluated using Mean Absolute Error.",
-      // We chose XGBoost because real option prices do not always follow strict textbook formulas.
-      // Models like Black-76 are useful as a benchmark, but markets are also driven by trader
-      // behaviour, risk sentiment, and sudden volatility spikes. By learning from large amounts of
-      // historical Nasdaq-100 options data, our model captures these real-world patterns and gives
-      // prices that are closer to how the market actually trades.
       why: "We use XGBoost to learn how options are priced in real markets, not just in theory. Black-76 remains our benchmark, while the ML model captures extra market behaviour and improves practical pricing accuracy.",
       tags: ["XGBoost", "Black-76", "Optuna", "CME Data", "MAE"],
     },
@@ -26,8 +21,16 @@ export default function About() {
       icon: "✦",
       description:
         "Financial news data is analysed using the Vader model to understand the current market state, capturing context and nuance in financial language.",
-      why: "(Please enter why you chose this approach here)",
+      why: "Vader is chosen for its ability to handle financial text sentiment without requiring large training datasets, offering real-time analysis of market-moving news with interpretable compound scores.",
       tags: ["Vader", "NLP", "Financial News"],
+    },
+    {
+      name: "Portfolio Dashboard",
+      icon: "✦",
+      description:
+        "Unified cross-asset portfolio tracking that combines equity positions, property holdings, and sentiment exposure into a single dashboard.",
+      why: "Investors need a holistic view of their cross-asset holdings. This dashboard provides real-time P&L tracking, correlation analysis, and risk metrics across liquid equities and illiquid property markets.",
+      tags: ["Cross-Asset", "Real-Time", "Risk Metrics", "Portfolio Analytics"],
     },
   ];
 
@@ -54,7 +57,7 @@ export default function About() {
       {/* Tools */}
       <div className="mb-6">
         <h2 className="text-xl font-bold text-white mb-4">Our Tools</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {tools.map((tool) => (
             <div key={tool.name} className="bg-zinc-900 p-6 rounded-xl border border-zinc-800 h-full">
               <div className="flex items-start gap-4 h-full">
@@ -83,7 +86,7 @@ export default function About() {
 
       {/* Footer note */}
       <p className="text-zinc-600 text-sm text-center">
-        Built as a 3rd year group project — combining quantitative finance, machine learning, and software engineering.
+        Built as a 3rd year group project — combining quantitative finance, machine learning, and soare engineering.
       </p>
     </div>
   );
